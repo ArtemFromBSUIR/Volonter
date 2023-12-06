@@ -1,14 +1,27 @@
 package com.example.Volonter.Controllers;
 
+import com.example.Volonter.models.Post;
+import com.example.Volonter.repo.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BlogController {
+
+    @Autowired
+    private PostRepository postRepository;
+
     @GetMapping("/blog")
     public String blogMain(Model model) {
-        model.addAttribute("title", "Hi java");
+        Iterable<Post> posts = postRepository.findAll();
+        model.addAttribute("posts", posts);
         return "blogMain";
+    }
+    @GetMapping("/blog/add")
+    public String blogAdd(Model model) {
+        model.addAttribute("title", "");
+        return "blogAdd";
     }
 }
