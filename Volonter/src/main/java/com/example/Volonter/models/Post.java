@@ -1,18 +1,32 @@
 package com.example.Volonter.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
-
+@Data
 @Entity
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Table(name = "post")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title, full_text, anons;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "full_text")
+    private String fullText;
+
+    @Column(name = "anons")
+    private String anons;
+
+    @Column(name = "views")
+    private int views;
 
     public Long getId() {
         return id;
@@ -30,12 +44,12 @@ public class Post {
         this.title = title;
     }
 
-    public String getFull_text() {
-        return full_text;
+    public String getFullText() {
+        return fullText;
     }
 
-    public void setFull_text(String full_text) {
-        this.full_text = full_text;
+    public void setFullText(String fullText) {
+        this.fullText = fullText;
     }
 
     public String getAnons() {
@@ -53,7 +67,4 @@ public class Post {
     public void setViews(int views) {
         this.views = views;
     }
-
-    private int views;
-
 }

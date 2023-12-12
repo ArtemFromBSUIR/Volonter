@@ -198,10 +198,17 @@
 <body style="background-color: rgba(220, 255, 255, 0.733);">
 
 <header th:insert="blocks/header" class="p-3 mb-3 border-bottom"></header>
-<div th:each="elem : ${posts}" class="alert alert-info mt-2">
-    <h3 th:text="${elem.title}"></h3>
-    <p th:text="${elem.anons}"></p>
-    <a th:href="'/blog/' + ${elem.id}" class="btn btn-warning">Детальнее</a>
+<div class="alert alert-info mt-2">
+    <h1>Добавление статьи</h1>
+    <div th:each="elem: ${post}">
+        <form method="post">
+            <input type="text" th:value="${elem.title}" name="title" placeholder="Введите название статьи" class="form-control"><br>
+            <input type="text" th:value="${elem.anons}" name="anons" placeholder="Введите анонс статьи" class="form-control"><br>
+            <textarea name="fulltext" placeholder="Введите описание статьи" class="form-control" th:text="${elem.fulltext}"/><br>
+            <button type="submit" class="btn btn-success">Обновить</button>
+            <br>
+        </form>
+    </div>
 </div>
 <footer th:insert="blocks/footer"></footer>
 </body>

@@ -181,7 +181,7 @@
     </style>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="sidebars.css" rel="stylesheet">
+<!--    <link href="sidebars.css" rel="stylesheet">-->
     <meta name="theme-color" content="#712cf9">
     <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -198,10 +198,15 @@
 <body style="background-color: rgba(220, 255, 255, 0.733);">
 
 <header th:insert="blocks/header" class="p-3 mb-3 border-bottom"></header>
-<div th:each="elem : ${posts}" class="alert alert-info mt-2">
-    <h3 th:text="${elem.title}"></h3>
-    <p th:text="${elem.anons}"></p>
-    <a th:href="'/blog/' + ${elem.id}" class="btn btn-warning">Детальнее</a>
+<!--<div th:each="elem : ${post}" class="alert alert-info mt-2">-->
+<div class="alert alert-info mt-2">
+    <h1 th:text="${post.title}"></h1>
+    <p th:text="${post.full_text}"></p>
+    <p th:text="${post.anons}"></p>
+    <a th:href="'/blog/' + ${post.id} + '/edit'" class="btn btn-warning">Редактировать</a>
+    <form th:action="'/blog/' + ${post.id} + '/remove'" method="post">
+    <button class="btn btn-warning" type="submit">Удалить</button>
+    </form>
 </div>
 <footer th:insert="blocks/footer"></footer>
 </body>
