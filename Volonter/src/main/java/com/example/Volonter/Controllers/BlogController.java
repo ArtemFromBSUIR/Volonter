@@ -72,19 +72,19 @@ public class BlogController {
         Post post = postRepository.findById(id).orElseThrow();
         post.setTitle(title);
         post.setAnons(anons);
-        post.setFullText(full_text);
+        post.setFull_text(full_text);
         postRepository.save(post);
         return "redirect:/blog";
     }
-//    @PostMapping("/blog/{id}/remove")
-//    public String blogPostDelete(@PathVariable(value = "id") long id,@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model) {
-//        Post post = postRepository.findById(id).orElseThrow();
-//        postRepository.delete(post);
-//        return "redirect:/blog";
-//    }
     @PostMapping("/blog/{id}/remove")
-    public String blogPostDelete(@ModelAttribute("post")Post post) {
+    public String blogPostDelete(@PathVariable(value = "id") long id,@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model) {
+        Post post = postRepository.findById(id).orElseThrow();
         postRepository.delete(post);
         return "redirect:/blog";
     }
+//    @PostMapping("/blog/{id}/remove")
+//    public String blogPostDelete(@ModelAttribute("post")Post post) {
+//        postRepository.delete(post);
+//        return "redirect:/blog";
+//    }
 }
